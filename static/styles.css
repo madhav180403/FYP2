@@ -1,0 +1,105 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+.container {
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.container h2 {
+    text-align: center;
+    color: #007bff;
+}
+
+.container form {
+    margin-top: 30px;
+}
+
+.container input[type="text"],
+.container input[type="password"],
+.container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.container select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 10px 40px 10px 10px;
+    background: url('data:image/svg+xml;utf8,<svg fill="#212529" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048"><path d="M1644 763L1024 1483 404 763H0l1024 936 1024-936h-404z"/></svg>') no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 24px;
+    background-color: #fff;
+}
+
+.container button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.container button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.flash {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+}
+
+.flash p {
+    margin: 0;
+    color: #721c24;
+}
+
+.container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.container th, .container td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.container th {
+    background-color: #f2f2f2;
+}
+
+.container tr:hover {
+    background-color: #f2f2f2;
+}
+
+.logout-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px; 
+    font-size: 14px; 
+    width: auto !important; 
+}
