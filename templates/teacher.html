@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Teacher Dashboard</h2>
+        {% for username, responses in student_responses_dict.items() %}
+            <div class="responses">
+                <h3>{{ username }}'s Responses</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer</th>
+                            <th>Marks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for response in responses %}
+                            <tr>
+                                <td>{{ question_text_map.get(response['question_id']|string, '') }}</td>
+                                <td>{{ response['answer'] }}</td>
+                                <td>{{ response['marks'] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endfor %}
+        <form action="/logout" method="POST">
+            <button class="logout-button" type="submit">Logout</button>
+        </form>
+    </div>
+</body>
+</html>

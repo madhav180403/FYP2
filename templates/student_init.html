@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard Initialization</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Select Subject and Number of Questions</h2>
+        <form method="POST" action="/student_init">
+            <label for="subject">Subject:</label>
+            <select name="subject" id="subject" required>
+                <option value="python">Python</option>
+                <option value="java">Java</option>
+                <!-- Add more options as needed -->
+            </select>
+            <br>
+            <label for="num_questions">Number of Questions:</label>
+            <input type="number" name="num_questions" id="num_questions" min="1" max="10" required>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

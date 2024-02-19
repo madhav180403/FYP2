@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Answer the Questions</h2>
+        <form method="POST" action="/student">
+            {% for question in questions %}
+            <div class="question">
+                <p>{{ question.question }}</p>
+                <textarea name="answer_{{ question._id }}" rows="4" cols="50" placeholder="Write your answer here..." required></textarea>
+            </div>
+            {% endfor %}
+            <button type="submit">Submit Answers</button>
+        </form>
+        
+        <!-- Logout button -->
+        <form action="/logout" method="POST">
+            <button class="logout-button" type="submit">Logout</button>
+        </form>
+    </div>
+</body>
+</html>
