@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash,session
 from pymongo import MongoClient
+from mark_calculation import calc_marks
 
 with open("key.key","rb") as key_file:
     key = key_file.read()
@@ -71,11 +72,13 @@ def student_dashboard():
                 question_id = key.replace('answer_', '')
                 answer = request.form[key]
                 
+                marks = calc_marks(question_id,answer)
+
                 student_responses_collection.insert_one({
                     'username': username,
                     'question_id': question_id,
                     'answer': answer,
-                    'marks': 0
+                    'marks': marks
                 })
 
         flash('Answers submitted successfully!', 'success')
