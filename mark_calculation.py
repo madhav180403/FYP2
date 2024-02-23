@@ -26,6 +26,7 @@ def calc_marks(question_id, student_answer):
     expected_answer = document['answer'].lower()
     
     similarities = 0
+    i=0
     with torch.no_grad():
         for model in models:
             embeddings1 = model.encode([expected_answer], convert_to_tensor=True)
@@ -34,15 +35,19 @@ def calc_marks(question_id, student_answer):
             similarity = util.pytorch_cos_sim(embeddings1, embeddings2).item()
             similarities += similarity
 
-            print(similarity)
+            print("Model", i+1," similarity score: ", similarity)
+
+            i+=1
 
     similarity = similarities / len(models)
 
-    print(similarity)
+    print("Average similarity: ",similarity)
     marks = 0
-    if similarity > 0.85:
+    if similarity >= 0.9:
+        marks = 2
+    elif similarity >= 0.77:
         marks = 1
-    elif similarity > 0.5:
+    elif similarity >= 0.65:
         marks = 0.5
 
-    return marks
+    return marks,max(0,similarity),expected_answer

@@ -2,6 +2,12 @@ from flask import Flask, render_template, request, redirect, url_for, flash,sess
 from pymongo import MongoClient
 from mark_calculation import calc_marks
 
+def total_marks(responses):
+    total = 0
+    for response in responses:
+        total += response['marks']
+    return total
+
 with open("key.key","rb") as key_file:
     key = key_file.read()
 
@@ -72,13 +78,15 @@ def student_dashboard():
                 question_id = key.replace('answer_', '')
                 answer = request.form[key]
                 
-                marks = calc_marks(question_id,answer)
+                marks,similarity,expected_answer = calc_marks(question_id,answer)
 
                 student_responses_collection.insert_one({
                     'username': username,
                     'question_id': question_id,
                     'answer': answer,
-                    'marks': marks
+                    'marks': marks,
+                    'similarity' : similarity,
+                    'expected_answer' : expected_answer
                 })
 
         flash('Answers submitted successfully!', 'success')
@@ -95,11 +103,12 @@ def student_dashboard():
 
 @app.route('/teacher')
 def teacher_dashboard():
+
     usernames = student_responses_collection.distinct('username')
 
     student_responses_dict = {}
     for username in usernames:
-        responses = student_responses_collection.find({'username': username})
+        responses = list(student_responses_collection.find({'username': username}))  # Convert cursor to list
         student_responses_dict[username] = responses
 
     questions = questions_collection.find({}, {'_id': 1, 'question': 1})  
@@ -108,7 +117,7 @@ def teacher_dashboard():
     for question in questions:
         question_text_map[str(question['_id'])] = question['question']
 
-    return render_template('teacher.html', student_responses_dict=student_responses_dict, question_text_map=question_text_map)
+    return render_template('teacher.html', student_responses_dict=student_responses_dict, question_text_map=question_text_map,total_marks=total_marks)
 
 @app.route('/add_question', methods=['GET', 'POST'])
 def add_question():

@@ -15,21 +15,30 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Question</th>
-                            <th>Answer</th>
+                            <th style="width: 250px;">Question</th> 
+                            <th style="width: 400px;">Answer</th> 
+                            <th style="width: 400px;">Expected Answer</th>
+                            <th>Similarity to expected answer</th>
                             <th>Marks</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for response in responses %}
-                            <tr>
-                                <td>{{ question_text_map.get(response['question_id']|string, '') }}</td>
-                                <td>{{ response['answer'] }}</td>
-                                <td>{{ response['marks'] }}</td>
-                            </tr>
+                        <tr>
+                            <td>{{ question_text_map.get(response['question_id']|string, '') }}</td>
+                            <td>{{ response['answer'] }}</td>
+                            <td>{{ response['expected_answer'] }}</td>
+                            <td class="{% if response['similarity'] < 0.65 %}red{% elif response['similarity'] >= 0.65 and response['similarity'] < 0.9 %}yellow{% else %}green{% endif %}">
+                                {{ response['similarity'] }}
+                            </td>
+                            <td>{{ response['marks'] }}</td>
+                        </tr>
                         {% endfor %}
                     </tbody>
                 </table>
+                <div class="total-marks">
+                    <p>Total Marks: {{ total_marks(responses) }}</p>
+                </div>
             </div>
         {% endfor %}
         <form action="/logout" method="POST">
