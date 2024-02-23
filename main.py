@@ -32,7 +32,7 @@ def login():
         if role == 'teacher':
             user = teachers_collection.find_one({'username': username, 'password': password})
             if user:
-                session['username'] = username  # Store username in session
+                session['username'] = username  
                 return redirect(url_for('teacher_dashboard'))
             else:
                 flash('Invalid credentials. Please try again.', 'error')
@@ -40,7 +40,7 @@ def login():
         elif role == 'student':
             user = students_collection.find_one({'username': username, 'password': password})
             if user:
-                session['username'] = username  # Store username in session
+                session['username'] = username  
                 return redirect(url_for('student_dashboard'))
             else:
                 flash('Invalid credentials. Please try again.', 'error')

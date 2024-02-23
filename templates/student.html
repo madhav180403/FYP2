@@ -11,15 +11,16 @@
         <h2>Answer the Questions</h2>
         <form method="POST" action="/student">
             {% for question in questions %}
+            <hr><br>
             <div class="question">
                 <p>{{ question.question }}</p>
                 <textarea name="answer_{{ question._id }}" rows="4" cols="50" placeholder="Write your answer here..." required></textarea>
             </div>
             {% endfor %}
+            <br>
             <button type="submit">Submit Answers</button>
         </form>
         
-        <!-- Logout button -->
         <form action="/logout" method="POST">
             <button class="logout-button" type="submit">Logout</button>
         </form>

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <div class="container">
+    <div class="container_teacher">
         <h2>Teacher Dashboard</h2>
         {% for username, responses in student_responses_dict.items() %}
             <div class="responses">
@@ -37,7 +37,7 @@
                     </tbody>
                 </table>
                 <div class="total-marks">
-                    <p>Total Marks: {{ total_marks(responses) }}</p>
+                    <p>Total Marks: {{ total_marks(responses) }}/{{ responses|length * 2 }}</p>
                 </div>
             </div>
         {% endfor %}

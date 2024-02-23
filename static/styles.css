@@ -20,7 +20,7 @@ body {
 }
 
 .container {
-    width: 80%;
+    width: 40%;
     margin: 50px auto;
     padding: 20px;
     background-color: #fff;
@@ -29,13 +29,37 @@ body {
     box-sizing: border-box;
 }
 
+.container hr
+{
+    height: 1px;
+    background-color: black;
+}
+
+.container_teacher {
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
 .container h2 {
+    text-align: center;
+    color: #007bff;
+}
+
+.container_teacher h2 {
     text-align: center;
     color: #007bff;
 }
 
 .container form {
     margin-top: 30px;
+    width: auto;
+    justify-content: center; 
+    margin: 0 auto; 
+    text-align: center; 
 }
 
 .container input[type="text"],
@@ -47,6 +71,7 @@ body {
     border: 1px solid #ced4da;
     border-radius: 4px;
     box-sizing: border-box;
+    justify-content: center; 
 }
 
 .container select {
@@ -88,7 +113,7 @@ body {
     color: #721c24;
 }
 
-.container table {
+.container_teacher table {
     width: 100%;
     border-collapse: collapse;
 }
@@ -100,14 +125,14 @@ body {
     margin-right: 10px; 
 }
 
-.container th, .container td {
+.container_teacher th, .container_teacher td {
     padding: 20px;
     border-bottom: 2px solid #ddd;
     text-align: center;
     border-right: 2px solid #ddd;
 }
 
-.container th {
+.container_teacher th {
     background-color: #f2f2f2;
 }
 
@@ -115,15 +140,26 @@ th:last-child, td:last-child {
     border-right: none;
 }
 
-.container tr:hover {
+.container_teacher tr:hover {
     background-color: #f2f2f2;
 }
 
 .logout-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px; 
+    font-size: 14px; 
+    width: auto !important;
     position: absolute;
     top: 10px;
     right: 10px;
-    padding: 5px 10px; 
-    font-size: 14px; 
-    width: auto !important; 
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
+
+.logout-button:hover {
+    background-color: #0056b3;
+}
+
